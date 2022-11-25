@@ -183,7 +183,7 @@ export class MuleJob {
 
         job.loadObjectives(objectives);
         job.addPlayer(player);
-        job.setCompletedCallback(() => {
+        job.setCompletedCallback( async () => {
             // Payout 100 - 200; Random;
             const earned = Math.floor(Math.random() * 100) + 100;
             Athena.player.currency.add(player, CurrencyTypes.CASH, earned);
