@@ -168,10 +168,6 @@ export class MuleJob {
                 Athena.player.emit.notification(player, `Drive the vehicle back`);
             },
             callbackOnFinish: (player: alt.Player) => {
-                // Payout 100 - 200; Random;
-                const earned = Math.floor(Math.random() * 100) + 100;
-                Athena.player.currency.add(player, CurrencyTypes.CASH, earned);
-                Athena.player.emit.notification(player, `~g~$${earned}`);
             },
         });
 
@@ -187,6 +183,12 @@ export class MuleJob {
 
         job.loadObjectives(objectives);
         job.addPlayer(player);
+        job.setCompletedCallback(() => {
+            // Payout 100 - 200; Random;
+            const earned = Math.floor(Math.random() * 100) + 100;
+            Athena.player.currency.add(player, CurrencyTypes.CASH, earned);
+            Athena.player.emit.notification(player, `~g~$${earned}`);
+        }
     }
 
     /**
